@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Enter the value row</h2>
+    <input type="text" id="rows">
+    <h2>Enter the value Column</h2>
+    <input type="text" id="cols">
+    <button id="make">click</button>
+    <table border="1" id="tab"></table>
+    <script>
+        function maketable() {
+            var table = document.getElementById('tab');
+            var row = document.getElementById('rows').value;
+            var col = document.getElementById('cols').value;
+            console.log(row + "" + col);
+            for (let i = 0; i < row; i++) {
+                var tr = document.createElement('tr');
+                for (let j = 0; j < col; j++) {
+                    var td = document.createElement('td');
+                    var text = document.createTextNode("col" + j);
+                    td.appendChild(text);
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+        }
+
+        document.getElementById('make').addEventListener("click", maketable);
+    </script>
+</body>
+
+
+</html>
