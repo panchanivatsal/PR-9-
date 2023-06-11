@@ -6,36 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .white {
+            background-color: white;
+            width: 100px;
+            height: 100px;
+        }
+        .black {
+            background-color: black;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>Enter the value row</h2>
+    <h2>Enter the number of rows:</h2>
     <input type="text" id="rows">
-    <h2>Enter the value Column</h2>
+    <h2>Enter the number of columns:</h2>
     <input type="text" id="cols">
-    <button id="make">click</button>
-    <table border="1" id="tab"></table>
-    <script>
-        function maketable() {
-            var table = document.getElementById('tab');
-            var row = document.getElementById('rows').value;
-            var col = document.getElementById('cols').value;
-            console.log(row + "" + col);
-            for (let i = 0; i < row; i++) {
-                var tr = document.createElement('tr');
-                for (let j = 0; j < col; j++) {
-                    var td = document.createElement('td');
-                    var text = document.createTextNode("col" + j);
-                    td.appendChild(text);
+    <button id="create">Create Chessboard</button>
+    <table id="root" border="1"></table>
+    <script type="text/javascript">
+        function createChessboard() {
+            let root = document.getElementById('root');
+            root.innerHTML = '';
+
+            let rows = parseInt(document.getElementById('rows').value);
+            let cols = parseInt(document.getElementById('cols').value);
+
+            for (let row = 1; row <= rows; row++) {
+                let tr = document.createElement('tr');
+                for (let col = 1; col <= cols; col++) {
+                    let td = document.createElement('td');
+                    if ((row + col) % 2 === 0) {
+                        td.setAttribute('class', 'black');
+                    } else {
+                        td.setAttribute('class', 'white');
+                    }
                     tr.appendChild(td);
                 }
-                table.appendChild(tr);
+                root.appendChild(tr);
             }
         }
 
-        document.getElementById('make').addEventListener("click", maketable);
+        document.getElementById('create').addEventListener("click", createChessboard);
     </script>
 </body>
-
 
 </html>
